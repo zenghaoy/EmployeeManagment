@@ -1,0 +1,20 @@
+<table border="1" width="100%">
+  <tbody>
+    <tr *ngFor="let e of employees; index as index">
+      <td>{{ e.id }}</td>
+      <td>{{ e.name }}</td>
+      <td>{{ e.email }}</td>
+      <td>{{ e.jobTitle }}</td>
+      <td>{{ e.phone }}</td>
+      <td>{{ e.imageUrl }}</td>
+      <td>{{ e.employCode }}</td>
+
+      <!-- <td>
+        <button (click)="doDelete(index)">Delete</button>
+      </td> -->
+      <td>
+        <button [routerLink]="['/post', index]">Link</button>
+      </td>
+    </tr>
+  </tbody>
+</table>

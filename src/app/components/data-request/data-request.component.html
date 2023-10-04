@@ -1,0 +1,232 @@
+<ng-container *ngIf="formGroup != null">
+  <div>
+    <form [formGroup]="formGroup">
+      <app-validation-panel
+        *ngIf="this.formGroup?.invalid && nextClicked"
+        [formGroup]="formGroup"
+        [msgOrder]="getErrorOrder()"
+      ></app-validation-panel>
+      <h1>Request details</h1>
+      <p>Refert to</p>
+
+      <!-- q1 -->
+      <div>
+        <p>1. Please describe</p>
+        <p
+          style="color: red"
+          *ngIf="formGroup.get('combinedAttr').errors?.['required'] && nextClicked"
+        >
+          Field is missing
+        </p>
+        <textarea
+          formControlName="combinedAttr"
+          [(ngModel)]="requestForm.dataRequest!.additionalDataAttr"
+        ></textarea>
+
+        <p>
+          Word count:
+          {{ requestForm.dataRequest?.additionalDataAttr?.length || 0 }}
+        </p>
+      </div>
+
+      <!-- q2 -->
+      <div>
+        <p>2. What is the frequency of the request?</p>
+        <p
+          style="color: red"
+          *ngIf="formGroup.get('freqOfReqList').errors?.['required'] && nextClicked"
+        >
+          Field is missing
+        </p>
+        <p
+          style="color: red"
+          *ngIf="formGroup.get('Q2Other')?.errors?.['required'] && nextClicked"
+        >
+          Other field is missing
+        </p>
+        <select
+          formControlName="freqOfReqList"
+          [(ngModel)]="requestForm.dataRequest!.freqOfKey"
+        >
+          <option [ngValue]="undefined">Select</option>
+          <option [value]="dataRequestFreq.ONETIME">One-Time</option>
+          <option [value]="dataRequestFreq.WEEKLY">Weekly</option>
+          <option [value]="dataRequestFreq.MONTHLY">Monthly</option>
+          <option [value]="dataRequestFreq.ANNULALLY">Annually</option>
+          <option [value]="dataRequestFreq.OTHER">Other</option>
+        </select>
+
+        <div
+          *ngIf="
+            requestForm.dataRequest?.freqOfKey == dataRequestFreq.OTHER;
+            else removeQ2Other
+          "
+        >
+          <p>Other</p>
+          {{ addControlQ2Other() }}
+          <input
+            type="text"
+            formControlName="Q2Other"
+            [(ngModel)]="requestForm.dataRequest!.freqOfRequestorOther"
+          />
+        </div>
+        <ng-template #removeQ2Other> {{ removeControlQ2Other() }}</ng-template>
+      </div>
+
+      <!-- q3 -->
+      <div>
+        <p>3. Have you made a request in the past?</p>
+        <p
+          style="color: red"
+          *ngIf="formGroup.get('FreqOneTime').errors?.['required'] && nextClicked"
+        >
+          Field is missing
+        </p>
+
+        <p
+          style="color: red"
+          *ngIf="formGroup.get('Q3Test')?.errors?.['required'] && nextClicked"
+        >
+          Other field is missing
+        </p>
+        <input
+          id="customTrue"
+          name="FreqOneTime"
+          type="radio"
+          [value]="true"
+          formControlName="FreqOneTime"
+          [(ngModel)]="requestForm.dataRequest!.isCutomSnapShot"
+          [checked]="true"
+          (click)="addControlQ3Yes()"
+        />
+        <label for="customTrue">Yes</label>
+        <input
+          id="customFalse"
+          name="FreqOneTime"
+          type="radio"
+          [value]="false"
+          formControlName="FreqOneTime"
+          [(ngModel)]="requestForm.dataRequest!.isCutomSnapShot"
+          (click)="removeControlQ3Yes()"
+        />
+        <label for="customFalse">No</label>
+
+        <div *ngIf="requestForm.dataRequest?.isCutomSnapShot">
+          <div>
+            {{ addControlQ3Yes() }}
+            <p>Previous request number</p>
+            <p>NUmber begins with WR 1234</p>
+            <input
+              type="text"
+              formControlName="Q3Test"
+              [(ngModel)]="requestForm.dataRequest!.prevRequestNumber"
+            />
+          </div>
+        </div>
+      </div>
+
+      <!-- q4 -->
+      <div>
+        <p>4. When do you need the data?</p>
+        <p>For example: 2023 8 12</p>
+        <p
+          style="color: red"
+          *ngIf="formGroup.get('Q4').errors?.['required'] && nextClicked"
+        >
+          Field is missing
+        </p>
+        <div>
+          <p>Year Month Day</p>
+          <input
+            type="text"
+            formControlName="Q4"
+            [(ngModel)]="requestForm.dataRequest!.dataRequiredByDate"
+          />
+        </div>
+      </div>
+
+      <!-- q5 -->
+      <div>
+        <p>5. What is the reason for this request?</p>
+        <p
+          style="color: red"
+          *ngIf="formGroup.get('Q5').errors?.['required'] && nextClicked"
+        >
+          Field is missing
+        </p>
+        <p
+          style="color: red"
+          *ngIf="formGroup.get('Q5Other')?.errors?.['required'] && nextClicked"
+        >
+          Other field is missing
+        </p>
+        <p>Check all that apply</p>
+        <div *ngFor="let reason of REASON_ORDER; let i = index">
+          <input
+            id="reason-option-{{ i }}"
+            type="checkbox"
+            [checked]="
+              requestForm.dataRequest!.reasonDetailsKay?.includes(reason)
+            "
+            (change)="updateReason($event)"
+            [value]="reason"
+          />{{ reason }}
+        </div>
+
+        <div
+          *ngIf="
+            requestForm.dataRequest!.reasonDetailsKay?.includes('Other');
+            else removeQ5Other
+          "
+        >
+          {{ addControlQ5Other() }}
+          <input
+            type="text"
+            formControlName="Q5Other"
+            [(ngModel)]="requestForm.dataRequest!.reasonDetailsOther"
+          />
+        </div>
+        <ng-template #removeQ5Other>
+          {{ removeControlQ5Other() }}
+        </ng-template>
+      </div>
+
+      <!-- Q6 -->
+      <div>
+        <p>6. In what format would you like the data?</p>
+      </div>
+
+      <!-- Q7 -->
+      <div>
+        <p>7. Attach a sample data file</p>
+
+        <ng-container
+          *ngIf="
+            requestForm.dataRequest!.sampleFormatDocuments?.length;
+            else noFileTemplate
+          "
+        >
+          <div
+            *ngFor="
+              let newdoc of requestForm.dataRequest!.sampleFormatDocuments
+            "
+          >
+            <p>{{ newdoc.name }}</p>
+          </div>
+        </ng-container>
+
+        <ng-template #noFileTemplate>No File</ng-template>
+      </div>
+
+      {{ requestForm.dataRequest | json }}
+    </form>
+  </div>
+
+  <app-progress-button
+    [page]="pageNames.DATA_REQUEST"
+    [formGroup]="formGroup!"
+    [requestForm]="requestForm!"
+    (nextClicked)="nextClickedFunction($event)"
+    >Next</app-progress-button
+  >
+</ng-container>

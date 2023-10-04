@@ -1,0 +1,273 @@
+<h1>Edit User</h1>
+
+<ng-container *ngIf="formGroup != null">
+  <div>
+    <form [formGroup]="formGroup" (ngSubmit)="onSubmit()">
+      <p>Given Name</p>
+      <input
+        type="text"
+        formControlName="firstNameController"
+        [(ngModel)]="userForm!.firstname"
+      />
+
+      <p>Surname</p>
+      <input
+        type="text"
+        formControlName="surnameController"
+        [(ngModel)]="userForm!.surname"
+      />
+
+      <p>Email</p>
+      <input
+        type="text"
+        formControlName="emailController"
+        [(ngModel)]="userForm!.email"
+      />
+
+      <p>Rank</p>
+      <select formControlName="rankController" [(ngModel)]="userForm!.rank">
+        <option [ngValue]="undefined">Select</option>
+        <option value="o1">O1</option>
+        <option value="o2">O2</option>
+        <option value="o3">O3</option>
+        <option value="o4">O4</option>
+        <option value="o5">O5</option>
+      </select>
+
+      <p>Title</p>
+      <select formControlName="titleController" [(ngModel)]="userForm!.title">
+        <option [ngValue]="undefined">Select</option>
+        <option value="o1">O1</option>
+        <option value="o2">O2</option>
+        <option value="o3">O3</option>
+        <option value="o4">O4</option>
+        <option value="o5">O5</option>
+      </select>
+
+      <p>Role</p>
+      <select formControlName="roleController" [(ngModel)]="userForm!.role">
+        <option [ngValue]="undefined">Select</option>
+        <option value="o1">O1</option>
+        <option value="o2">O2</option>
+        <option value="o3">O3</option>
+        <option value="o4">O4</option>
+        <option value="o5">O5</option>
+      </select>
+
+      <p>Does this User have a Badge Number?</p>
+      <input
+        id="badgeYes"
+        name="isBadgeController"
+        type="radio"
+        [value]="true"
+        formControlName="isBadgeController"
+        [(ngModel)]="userForm!.isBadge"
+        [checked]="true"
+      />
+      <label for="badgeYes">Yes</label>
+
+      <input
+        id="badgeNo"
+        name="isBadgeController"
+        type="radio"
+        [value]="false"
+        formControlName="isBadgeController"
+        [(ngModel)]="userForm!.isBadge"
+      />
+      <label for="badgeNo">No</label>
+
+      <p>Badge No.</p>
+      <input
+        type="number"
+        formControlName="badgeNoController"
+        [(ngModel)]="userForm!.badgeNo"
+      />
+
+      <p>Agency</p>
+      <select formControlName="agencyController" [(ngModel)]="userForm!.agency">
+        <option [ngValue]="undefined">Select</option>
+        <option value="o1">O1</option>
+        <option value="o2">O2</option>
+        <option value="o3">O3</option>
+        <option value="o4">O4</option>
+        <option value="o5">O5</option>
+      </select>
+
+      <p>Court Region where officer works</p>
+      <select formControlName="regionController" [(ngModel)]="userForm!.region">
+        <option [ngValue]="undefined">Select</option>
+        <option value="o1">O1</option>
+        <option value="o2">O2</option>
+        <option value="o3">O3</option>
+        <option value="o4">O4</option>
+        <option value="o5">O5</option>
+      </select>
+
+      <hr />
+
+      <p>Is the officer temporarily seconded</p>
+      <input
+        id="secAgencyYes"
+        name="isSecAgencyController"
+        type="radio"
+        [value]="true"
+        formControlName="isSecAgencyController"
+        [(ngModel)]="userForm!.secondAgency.isSec"
+        [checked]="true"
+      />
+      <label for="secAgencyYes">Yes</label>
+
+      <input
+        id="secAgencyNo"
+        name="isSecAgencyController"
+        type="radio"
+        [value]="false"
+        formControlName="isSecAgencyController"
+        [(ngModel)]="userForm!.secondAgency.isSec"
+      />
+      <label for="secAgencyNo">No</label>
+
+      <p>Secoded Agency</p>
+      <select
+        formControlName="secAgencyController"
+        [(ngModel)]="userForm!.secondAgency.secAgency"
+      >
+        <option [ngValue]="undefined">Select</option>
+        <option value="o1">O1</option>
+        <option value="o2">O2</option>
+        <option value="o3">O3</option>
+        <option value="o4">O4</option>
+        <option value="o5">O5</option>
+      </select>
+
+      <p>Seconded Email</p>
+      <input
+        type="text"
+        formControlName="secEmailController"
+        [(ngModel)]="userForm!.secondAgency.secEmail"
+      />
+
+      <p>Active User</p>
+      <input
+        type="checkbox"
+        formControlName="activeController"
+        [(ngModel)]="userForm!.secondAgency.active"
+      />
+
+      <p>Reason for deactivation</p>
+      <input
+        type="text"
+        formControlName="reasonForDeactivationController"
+        [(ngModel)]="userForm!.secondAgency.reasonForDeactivation"
+      />
+
+      <p>Read Only Access</p>
+      <input
+        type="checkbox"
+        formControlName="readOnlyController"
+        [(ngModel)]="userForm!.secondAgency.readOnly"
+      />
+
+      <p>Reason for deactivation</p>
+      <input
+        type="text"
+        formControlName="reasonForReadOnlyController"
+        [(ngModel)]="userForm!.secondAgency.reasonForReadOnly"
+      />
+
+      <hr />
+
+      <p>Receive email notification</p>
+      <input
+        type="checkbox"
+        formControlName="isNotiController"
+        [(ngModel)]="userForm!.isNoti"
+      />
+
+      <p>I confirm accurate above</p>
+      <input
+        type="checkbox"
+        formControlName="isConfirmController"
+        [(ngModel)]="userForm!.isConfirm"
+      />
+
+      <button type="submit">Submit</button>
+
+      {{ userForm | json }}
+      {{ formGroup?.invalid }}
+    </form>
+  </div>
+  <ng-container *ngIf="userForm!.history.length > 0">
+    <div class="mat-elevation-z8">
+      <!-- <mat-form-field>
+    <input
+      matInput
+      (keyup)="applyFilter($event.target.value)"
+      placeholder="Filter"
+    />
+  </mat-form-field> -->
+
+      <table mat-table [dataSource]="dataSource">
+        <!-- Name Column -->
+        <ng-container matColumnDef="record_date">
+          <mat-header-cell
+            *matHeaderCellDef
+            sortActionDescription="Sort by name"
+          >
+            First Name
+          </mat-header-cell>
+          <mat-cell *matCellDef="let element">{{
+            element.recordDate
+          }}</mat-cell>
+        </ng-container>
+
+        <!-- Weight Column -->
+        <ng-container matColumnDef="action_column">
+          <mat-header-cell
+            *matHeaderCellDef
+            sortActionDescription="Sort by weight"
+          >
+            Email
+          </mat-header-cell>
+          <mat-cell *matCellDef="let element">{{ element.action }}</mat-cell>
+        </ng-container>
+
+        <!-- Symbol Column -->
+        <ng-container matColumnDef="modified_by">
+          <mat-header-cell
+            *matHeaderCellDef
+            sortActionDescription="Sort by symbol"
+          >
+            Role
+          </mat-header-cell>
+          <mat-cell *matCellDef="let element">{{
+            element.modified_by
+          }}</mat-cell>
+        </ng-container>
+
+        <!-- Action Column -->
+        <ng-container matColumnDef="modified_values">
+          <mat-header-cell
+            *matHeaderCellDef
+            sortActionDescription="Sort by weight"
+          >
+            Action
+          </mat-header-cell>
+          <mat-cell *matCellDef="let element">{{
+            element.modfied_values
+          }}</mat-cell>
+        </ng-container>
+
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+      </table>
+
+      <mat-paginator
+        [pageSizeOptions]="[5, 10, 20]"
+        showFirstLastButtons
+        aria-label="Select page of periodic elements"
+      >
+      </mat-paginator>
+    </div>
+  </ng-container>
+</ng-container>

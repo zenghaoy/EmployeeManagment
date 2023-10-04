@@ -1,0 +1,25 @@
+{
+  "title": "[FR]English",
+  "homePage": {
+    "title": "[FR]Custom data request form",
+    "subTitleOne": "[FR]Refer to",
+    "subTitleTwo": "[FR]Business Glossary",
+    "description": "[FR]You will require the following info",
+    "firstDetail": "[FR]Request details",
+    "firstDetailOne": "[FR]Describe",
+    "firstDetailTwo": "[FR]Describe",
+    "firstDetailThree": "[FR]Describe",
+    "firstDetailFour": "[FR]Describe",
+    "secondDetail": "[FR]Request details",
+    "secondDetailOne": "[FR]Describe",
+    "secondDetailTwo": "[FR]Describe",
+    "secondDetailThree": "[FR]Describe",
+    "secondDetailFour": "[FR]Describe",
+    "note": "[FR]Note",
+    "noteOne": "[FR]Please be aware",
+    "noteTwo": "[FR]To have"
+  },
+  "footer": {
+    "Printer": "[FR]King printer"
+  }
+}

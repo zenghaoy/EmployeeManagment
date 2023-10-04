@@ -1,0 +1,25 @@
+{
+  "title": "English",
+  "homePage": {
+    "title": "Custom data request form",
+    "subTitleOne": "Refer to",
+    "subTitleTwo": "Business Glossary",
+    "description": "You will require the following info",
+    "firstDetail": "Request details",
+    "firstDetailOne": "Describe",
+    "firstDetailTwo": "Describe",
+    "firstDetailThree": "Describe",
+    "firstDetailFour": "Describe",
+    "secondDetail": "Request details",
+    "secondDetailOne": "Describe",
+    "secondDetailTwo": "Describe",
+    "secondDetailThree": "Describe",
+    "secondDetailFour": "Describe",
+    "note": "Note",
+    "noteOne": "Please be aware",
+    "noteTwo": "To have"
+  },
+  "footer":{
+    "Printer":"King printer"
+  }
+}

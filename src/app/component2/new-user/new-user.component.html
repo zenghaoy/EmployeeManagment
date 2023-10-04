@@ -1,0 +1,126 @@
+<h1>Create New User</h1>
+
+<ng-container *ngIf="formGroup != null">
+  <div>
+    <form [formGroup]="formGroup" (ngSubmit)="onSubmit()">
+      <p>Given Name</p>
+      <input
+        type="text"
+        formControlName="firstNameController"
+        [(ngModel)]="userForm!.firstname"
+      />
+
+      <p>Surname</p>
+      <input
+        type="text"
+        formControlName="surnameController"
+        [(ngModel)]="userForm!.surname"
+      />
+
+      <p>Email</p>
+      <input
+        type="text"
+        formControlName="emailController"
+        [(ngModel)]="userForm!.email"
+      />
+
+      <p>Rank</p>
+      <select formControlName="rankController" [(ngModel)]="userForm!.rank">
+        <option [ngValue]="undefined">Select</option>
+        <option value="o1">O1</option>
+        <option value="o2">O2</option>
+        <option value="o3">O3</option>
+        <option value="o4">O4</option>
+        <option value="o5">O5</option>
+      </select>
+
+      <p>Title</p>
+      <select formControlName="titleController" [(ngModel)]="userForm!.title">
+        <option [ngValue]="undefined">Select</option>
+        <option value="o1">O1</option>
+        <option value="o2">O2</option>
+        <option value="o3">O3</option>
+        <option value="o4">O4</option>
+        <option value="o5">O5</option>
+      </select>
+
+      <p>Role</p>
+      <select formControlName="roleController" [(ngModel)]="userForm!.role">
+        <option [ngValue]="undefined">Select</option>
+        <option value="o1">O1</option>
+        <option value="o2">O2</option>
+        <option value="o3">O3</option>
+        <option value="o4">O4</option>
+        <option value="o5">O5</option>
+      </select>
+
+      <p>Does this User have a Badge Number?</p>
+      <input
+        id="badgeYes"
+        name="isBadgeController"
+        type="radio"
+        [value]="true"
+        formControlName="isBadgeController"
+        [(ngModel)]="userForm!.isBadge"
+        [checked]="true"
+      />
+      <label for="badgeYes">Yes</label>
+
+      <input
+        id="badgeNo"
+        name="isBadgeController"
+        type="radio"
+        [value]="false"
+        formControlName="isBadgeController"
+        [(ngModel)]="userForm!.isBadge"
+      />
+      <label for="badgeNo">No</label>
+
+      <p>Badge No.</p>
+      <input
+        type="number"
+        formControlName="badgeNoController"
+        [(ngModel)]="userForm!.badgeNo"
+      />
+
+      <p>Agency</p>
+      <select formControlName="agencyController" [(ngModel)]="userForm!.agency">
+        <option [ngValue]="undefined">Select</option>
+        <option value="o1">O1</option>
+        <option value="o2">O2</option>
+        <option value="o3">O3</option>
+        <option value="o4">O4</option>
+        <option value="o5">O5</option>
+      </select>
+
+      <p>Court Region where officer works</p>
+      <select formControlName="regionController" [(ngModel)]="userForm!.region">
+        <option [ngValue]="undefined">Select</option>
+        <option value="o1">O1</option>
+        <option value="o2">O2</option>
+        <option value="o3">O3</option>
+        <option value="o4">O4</option>
+        <option value="o5">O5</option>
+      </select>
+
+      <p>Receive email notification</p>
+      <input
+        type="checkbox"
+        formControlName="isNotiController"
+        [(ngModel)]="userForm!.isNoti"
+      />
+
+      <p>I confirm accurate above</p>
+      <input
+        type="checkbox"
+        formControlName="isConfirmController"
+        [(ngModel)]="userForm!.isConfirm"
+      />
+
+      <button type="submit">Submit</button>
+
+      {{ userForm | json }}
+      {{ formGroup?.invalid }}
+    </form>
+  </div>
+</ng-container>
