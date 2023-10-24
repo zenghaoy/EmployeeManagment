@@ -88,7 +88,13 @@ export class NewUserComponent {
       this.userForm.history = [];
     }
 
-    const userHisotry = new UserHistory('2023/10/03', 'Create', 'Harry', '');
+    const date = new Date();
+    let day = date.getDate();
+let month = date.getMonth() + 1;
+let year = date.getFullYear();
+let currentDate = `${day}-${month}-${year}`
+
+    const userHisotry = new UserHistory(currentDate, 'Create', 'Harry', '');
     this.userForm.history.push(userHisotry);
 
     this.userForm.id = this.userForms.length + 1;

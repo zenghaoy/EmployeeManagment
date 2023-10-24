@@ -198,6 +198,7 @@
     </form>
   </div>
   <ng-container *ngIf="userForm!.history.length > 0">
+    User History
     <div class="mat-elevation-z8">
       <!-- <mat-form-field>
     <input
@@ -214,7 +215,7 @@
             *matHeaderCellDef
             sortActionDescription="Sort by name"
           >
-            First Name
+            Record Date
           </mat-header-cell>
           <mat-cell *matCellDef="let element">{{
             element.recordDate
@@ -227,7 +228,7 @@
             *matHeaderCellDef
             sortActionDescription="Sort by weight"
           >
-            Email
+            Action
           </mat-header-cell>
           <mat-cell *matCellDef="let element">{{ element.action }}</mat-cell>
         </ng-container>
@@ -238,7 +239,7 @@
             *matHeaderCellDef
             sortActionDescription="Sort by symbol"
           >
-            Role
+            Modified by
           </mat-header-cell>
           <mat-cell *matCellDef="let element">{{
             element.modified_by
@@ -251,7 +252,7 @@
             *matHeaderCellDef
             sortActionDescription="Sort by weight"
           >
-            Action
+            Modified Action
           </mat-header-cell>
           <mat-cell *matCellDef="let element">{{
             element.modfied_values

@@ -168,11 +168,18 @@ export class EditUserComponent {
     //   }
     // );
 
+    const date = new Date();
+    let day = date.getDate();
+let month = date.getMonth() + 1;
+let year = date.getFullYear();
+let currentDate = `${day}-${month}-${year}`
+
+
     const userHisotry = new UserHistory(
-      '2023/10/03',
+      currentDate,
       'Update',
       'Harry',
-      'test'
+      '.......'
     );
     console.log('userstory: ', userHisotry);
     this.userForm.history.push(userHisotry);
